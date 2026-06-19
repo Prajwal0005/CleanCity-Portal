@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean City Portal - Citizen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-page="citizen" class="citizen-sketch">
+  <div class="app-shell citizen-shell">
+    <aside class="citizen-nav" aria-label="Sidebar">
+      <div class="sidebar-top">
+        <div class="profile-card">
+          <div class="profile-icon"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <div class="profile-name" data-welcome>Citizen</div>
+            <div class="profile-meta">Citizen Account</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-menu" aria-label="Primary">
+          <a class="menu-item" href="#new" data-tab="new">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+          <a class="menu-item" href="#complaints" data-tab="complaints">
+            <i class="fa-solid fa-list-check"></i>
+            <span>My Complaints</span>
+          </a>
+          <div class="menu-meta">Your previous complaints and current status.</div>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="menu-divider"></div>
+        <button class="menu-item menu-button" onclick="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="citizen-main-area">
+      <div class="page-header main-header">
+        <div class="brand-title">Clean City Portal</div>
+        <div class="brand-subtitle">Citizen Dashboard</div>
+      </div>
+
+      <div class="glass-card tab-panel" id="complaintFormCard" data-panel="new">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="icon-pill"><i class="fa-solid fa-pen-to-square"></i></div>
+          <div>
+            <h5 class="mb-0">New Complaint</h5>
+            <p class="text-muted small mb-0">Fill all details for faster action.</p>
+          </div>
+        </div>
+        <form id="complaintForm" class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Title</label>
+            <input id="complaintTitle" type="text" class="form-control" placeholder="Overflowing bins" required>
+          </div>
+          <div class="col-12 col-lg-6">
+            <label class="form-label">Issue Type</label>
+            <select id="complaintType" class="form-select" required>
+              <option value="Garbage">Garbage</option>
+              <option value="Road Damage">Road Damage</option>
+              <option value="Drainage">Drainage</option>
+              <option value="Street Light">Street Light</option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-6">
+            <label class="form-label">Location</label>
+            <input id="complaintLocation" type="text" class="form-control" placeholder="Sector 12, Block A" required>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea id="complaintDescription" class="form-control" rows="3" placeholder="Provide details" required></textarea>
+          </div>
+          <div class="col-12 col-lg-6">
+            <label class="form-label">Mobile Number</label>
+            <input id="complaintPhone" type="tel" class="form-control" placeholder="10-digit mobile number" required>
+          </div>
+          <div class="col-12 col-lg-6">
+            <label class="form-label">Upload Image (required)</label>
+            <input id="complaintImage" type="file" class="form-control" accept="image/*" required>
+            <div class="mt-2" id="complaintImagePreview" style="display: none;">
+              <img id="complaintImagePreviewImg" class="preview-img" alt="Complaint preview">
+            </div>
+          </div>
+          <div class="col-12 d-flex align-items-center gap-3">
+            <button class="btn btn-primary w-100" type="submit">Submit Complaint</button>
+          </div>
+          <div class="col-12">
+            <span id="complaintMessage" class="small"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="glass-card complaints-section tab-panel is-hidden" id="complaintsSection" data-panel="complaints">
+        <div class="complaints-overview">
+          <div class="overview-stats">
+            <div class="overview-item">
+              <span>Open</span>
+              <strong id="citizenOpen">0</strong>
+            </div>
+            <div class="overview-item">
+              <span>Closed</span>
+              <strong id="citizenClosed">0</strong>
+            </div>
+            <div class="overview-item">
+              <span>In-Progress</span>
+              <strong id="citizenInProgress">0</strong>
+            </div>
+          </div>
+          <div class="overview-donut" id="complaintsDonut" aria-hidden="true">
+            <div class="donut-center">
+              <span>Total Tickets</span>
+              <strong id="citizenTotal">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="complaints-card">
+          <div class="complaints-head">
+            <div>
+              <h5 class="mb-1">My Complaints</h5>
+              <p class="text-muted small mb-0">Your previous complaints and current status.</p>
+            </div>
+            <div class="complaints-actions">
+              <label for="complaintStatusFilter" class="small text-muted">Status:</label>
+              <select id="complaintStatusFilter" class="form-select form-select-sm">
+                <option value="all">All Category</option>
+                <option value="pending">Open</option>
+                <option value="in progress">In-Progress</option>
+                <option value="awaiting verification">Awaiting Verification</option>
+                <option value="resolved">Closed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="complaints-list" id="citizenComplaints"></div>
+
+          <div class="complaints-footer">
+            <button class="btn btn-accent btn-sm" type="button" data-tab="new">
+              <i class="fa-solid fa-plus"></i> New Complaint
+            </button>
+            <div class="pagination">
+              <button class="page-btn" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="page-btn active" type="button">1</button>
+              <button class="page-btn" type="button">2</button>
+              <button class="page-btn" type="button">3</button>
+              <span class="page-ellipsis">…</span>
+              <button class="page-btn" type="button">10</button>
+              <button class="page-btn" type="button"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="imageViewer" class="image-viewer d-none">
+    <div class="image-viewer-backdrop" data-action="close-viewer"></div>
+    <div class="image-viewer-content">
+      <button class="image-viewer-close" type="button" data-action="close-viewer">&times;</button>
+      <img id="imageViewerImg" alt="Preview">
+    </div>
+  </div>
+
+  <div id="detailViewer" class="detail-viewer d-none">
+    <div class="detail-viewer-backdrop" data-action="close-detail"></div>
+    <div class="detail-viewer-content">
+      <button class="detail-viewer-close" type="button" data-action="close-detail">&times;</button>
+      <div class="detail-header">
+        <h4 id="detailTitle">Complaint</h4>
+        <span class="detail-status" id="detailStatus">Pending</span>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-image-wrap">
+          <img id="detailImage" class="d-none" alt="Complaint image">
+        </div>
+        <div class="detail-meta">
+          <div><span>Category:</span> <strong id="detailType">Complaint</strong></div>
+          <div><span>Location:</span> <strong id="detailLocation">—</strong></div>
+          <div><span>Submitted:</span> <strong id="detailDate">—</strong></div>
+          <div><span>Phone:</span> <strong id="detailPhone">—</strong></div>
+        </div>
+      </div>
+      <div class="detail-desc">
+        <span>Description</span>
+        <p id="detailDesc">—</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

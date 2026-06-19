@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean City Portal - Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-page="register" class="eco-login eco-register">
+  <div class="hanging-branches" aria-hidden="true">
+    <div class="branch branch-left"></div>
+    <div class="branch branch-right"></div>
+  </div>
+  <div class="ambient-orb orb-one"></div>
+  <div class="ambient-orb orb-two"></div>
+  <div class="ambient-orb orb-three"></div>
+
+  <main class="login-shell">
+    <section class="login-left">
+      <div class="glass-card">
+        <div class="card-top">
+          <div class="pill-title">
+            <span class="pill-icon"><i class="fa-solid fa-leaf"></i></span>
+            <span>City Sanitation Access</span>
+          </div>
+        </div>
+        <h1>Citizen Registration</h1>
+        <p class="card-desc">
+          Create your Clean City Portal account to report issues and get updates.
+        </p>
+
+        <form id="registerForm" class="login-form" autocomplete="on" novalidate>
+          <label class="field">
+            <span>Name</span>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input id="registerName" type="text" placeholder="Your full name" autocomplete="name" required>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Email</span>
+            <div class="input-wrap">
+              <i class="fa-regular fa-envelope"></i>
+              <input id="registerEmail" type="email" placeholder="you@city.gov" autocomplete="email" spellcheck="false" required>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input id="registerPassword" type="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required>
+            </div>
+          </label>
+
+          <div id="otpSection" class="field d-none">
+            <span>OTP</span>
+            <div class="input-wrap">
+              <i class="fa-solid fa-key"></i>
+              <input id="registerOtp" type="text" placeholder="6-digit OTP">
+            </div>
+            <small id="otpHelper" class="text-muted d-block mt-1"></small>
+          </div>
+
+          <button id="sendOtpBtn" class="primary-btn" type="button">Send OTP</button>
+          <button id="verifyOtpBtn" class="secondary-btn d-none" type="button">Verify & Register</button>
+          <button id="resendOtpBtn" class="secondary-btn d-none" type="button">Resend OTP</button>
+          <a id="loginNowBtn" class="secondary-btn d-none text-decoration-none text-center" href="login.html">Login Now</a>
+          <p id="registerMessage" class="small mt-1" role="status" aria-live="polite"></p>
+
+          <p class="register">
+            Already registered? <a href="login.html">Login</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="js/script.js"></script>
+  <script>
+    const sendOtpBtn = document.getElementById("sendOtpBtn");
+    const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+    const resendOtpBtn = document.getElementById("resendOtpBtn");
+    const loginNowBtn = document.getElementById("loginNowBtn");
+    const otpSection = document.getElementById("otpSection");
+    const message = document.getElementById("registerMessage");
+    const otpCooldownSeconds = 30;
+    const otpExpiryMinutes = 10;
+    let otpCooldownTimer = null;
+
+    const setMessage = (text, ok) => {
+      message.textContent = text;
+      message.classList.toggle("text-success", ok);
+      message.classList.toggle("text-danger", !ok);
+    };
+
+    const startCooldown = (button) => {
+      let remaining = otpCooldownSeconds;
+      button.disabled = true;
+      button.textContent = `Resend OTP (${remaining}s)`;
+      if (otpCooldownTimer) {
+        clearInterval(otpCooldownTimer);
+      }
+      otpCooldownTimer = setInterval(() => {
+        remaining -= 1;
+        if (remaining <= 0) {
+          clearInterval(otpCooldownTimer);
+          otpCooldownTimer = null;
+          button.disabled = false;
+          button.textContent = "Resend OTP";
+        } else {
+          button.textContent = `Resend OTP (${remaining}s)`;
+        }
+      }, 1000);
+    };
+
+    const requestOtp = async (isResend = false) => {
+      const name = document.getElementById("registerName").value.trim();
+      const email = document.getElementById("registerEmail").value.trim();
+      const password = document.getElementById("registerPassword").value.trim();
+
+      if (!name || !email || !password) {
+        setMessage("All fields are required.", false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password }),
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          setMessage(data.message || "OTP sent. Please verify.", true);
+          otpSection.classList.remove("d-none");
+          verifyOtpBtn.classList.remove("d-none");
+          resendOtpBtn.classList.remove("d-none");
+          sendOtpBtn.disabled = true;
+          document.getElementById("registerName").disabled = true;
+          document.getElementById("registerEmail").disabled = true;
+          document.getElementById("registerPassword").disabled = true;
+          startCooldown(resendOtpBtn);
+          const helper = document.getElementById("otpHelper");
+          if (helper) {
+            helper.textContent = `OTP expires in ${otpExpiryMinutes} minutes.`;
+          }
+        } else {
+          setMessage(data.error || "Unable to send OTP.", false);
+        }
+      } catch {
+        setMessage("Server not reachable. Please start the backend.", false);
+      }
+    };
+
+    const verifyOtp = async () => {
+      const email = document.getElementById("registerEmail").value.trim();
+      const otp = document.getElementById("registerOtp").value.trim();
+
+      if (!otp) {
+        setMessage("Enter the OTP sent to your email.", false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/register/verify`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, otp }),
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          setMessage(data.message || "Email verified. You can login now.", true);
+          verifyOtpBtn.disabled = true;
+          resendOtpBtn.disabled = true;
+          loginNowBtn.classList.remove("d-none");
+          loginNowBtn.focus();
+        } else {
+          setMessage(data.error || "OTP verification failed.", false);
+        }
+      } catch {
+        setMessage("Server not reachable. Please start the backend.", false);
+      }
+    };
+
+    sendOtpBtn.addEventListener("click", () => requestOtp(false));
+    resendOtpBtn.addEventListener("click", () => requestOtp(true));
+    verifyOtpBtn.addEventListener("click", verifyOtp);
+  </script>
+</body>
+</html>

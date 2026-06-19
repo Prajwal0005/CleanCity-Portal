@@ -1,0 +1,5 @@
+who scanned the product name should be shown - time and date
+ stock adjust and product should be one 
+all history should be shown in report 
+inner scroll after 12 lines
+cash shown in billing should auto enter in payment desk

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean City Portal - My Complaints</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body class="eco-page">
+  <div class="ambient-orb orb-one"></div>
+  <div class="ambient-orb orb-two"></div>
+  <div class="ambient-orb orb-three"></div>
+
+  <main class="page-shell">
+    <header class="page-header">
+      <div>
+        <p class="pill-title"><i class="fa-solid fa-leaf"></i> City Sanitation Access</p>
+        <h1>My Complaints</h1>
+        <p class="subtitle">Track updates, escalation, and resolution in one place.</p>
+      </div>
+      <a class="primary-btn" href="complaint-new.html"><i class="fa-solid fa-plus"></i> New Complaint</a>
+    </header>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <p>Total</p>
+        <h3>3</h3>
+      </div>
+      <div class="stat-card">
+        <p>Pending</p>
+        <h3>1</h3>
+      </div>
+      <div class="stat-card">
+        <p>In Progress</p>
+        <h3>1</h3>
+      </div>
+      <div class="stat-card">
+        <p>Resolved</p>
+        <h3>1</h3>
+      </div>
+    </section>
+
+    <section class="complaints-grid">
+      <article class="glass-card complaint-card">
+        <div class="card-top">
+          <h3>Broken Streetlight</h3>
+          <span class="badge badge-resolved">Resolved</span>
+        </div>
+        <p class="card-meta">Swarajya Hind co-op Society, Gaikwad Nagar, Malad west</p>
+        <div class="tag-row">
+          <span class="badge badge-resolved">Resolved in 164H</span>
+        </div>
+        <div class="progress"><span style="width: 100%;"></span></div>
+        <div class="photo-box">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <p class="submitted">Submitted 3/30/2026, 3:19 PM</p>
+        <div class="feedback">
+          <label>Your Feedback</label>
+          <select>
+            <option>Rate 1-5</option>
+            <option>5 - Excellent</option>
+            <option>4 - Good</option>
+            <option>3 - Okay</option>
+            <option>2 - Needs work</option>
+            <option>1 - Poor</option>
+          </select>
+          <textarea rows="2" placeholder="Optional comment"></textarea>
+          <button class="ghost-btn small" type="button">Submit Feedback</button>
+        </div>
+      </article>
+
+      <article class="glass-card complaint-card">
+        <div class="card-top">
+          <h3>Broken Streetlight</h3>
+          <span class="badge badge-progress">In Progress</span>
+        </div>
+        <p class="card-meta">Swarajya Hind co-op Society, Gaikwad Nagar, Malad west</p>
+        <div class="tag-row">
+          <span class="badge badge-progress">In Progress</span>
+          <span class="badge badge-overdue">Overdue by 92H</span>
+        </div>
+        <div class="progress"><span style="width: 55%;"></span></div>
+        <div class="photo-box">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <p class="submitted">Submitted 3/30/2026, 3:34 PM</p>
+      </article>
+
+      <article class="glass-card complaint-card">
+        <div class="card-top">
+          <h3>Overflowing dustbins</h3>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <p class="card-meta">Swarajya Hind co-op Society, Gaikwad Nagar, Malad west</p>
+        <div class="tag-row">
+          <span class="badge badge-pending">Pending</span>
+          <span class="badge badge-due">Due in 72H</span>
+        </div>
+        <div class="progress"><span style="width: 20%;"></span></div>
+        <div class="photo-box">
+          <i class="fa-solid fa-trash"></i>
+        </div>
+        <p class="submitted">Submitted 4/6/2026, 3:40 PM</p>
+      </article>
+    </section>
+
+    <div class="clean-bubbles">
+      <span class="bubble bubble-1"><i class="fa-solid fa-seedling"></i></span>
+      <span class="bubble bubble-2"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+      <span class="bubble bubble-3"><i class="fa-solid fa-trash"></i></span>
+      <span class="bubble bubble-4"><i class="fa-solid fa-broom"></i></span>
+      <span class="bubble bubble-5"><i class="fa-solid fa-recycle"></i></span>
+    </div>
+  </main>
+
+  <style>
+    :root {
+      --primary: #2f8f3a;
+      --secondary: #57b564;
+      --text: #2b3b33;
+      --muted: #6b7d73;
+      --glass: rgba(255, 255, 255, 0.92);
+      --shadow: 0 18px 40px rgba(31, 72, 40, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body.eco-page {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(87, 181, 100, 0.25), transparent 45%),
+        radial-gradient(circle at 90% 20%, rgba(129, 202, 141, 0.22), transparent 50%),
+        radial-gradient(circle at 85% 85%, rgba(87, 181, 100, 0.18), transparent 45%),
+        #eef9f2;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.28;
+      z-index: 0;
+      filter: blur(1px);
+    }
+
+    .orb-one {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(87, 181, 100, 0.3) 0%, rgba(87, 181, 100, 0.05) 70%);
+      top: -80px;
+      left: -90px;
+    }
+
+    .orb-two {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(47, 143, 58, 0.25) 0%, rgba(47, 143, 58, 0.05) 70%);
+      bottom: -70px;
+      right: 4%;
+    }
+
+    .orb-three {
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(129, 202, 141, 0.25) 0%, rgba(129, 202, 141, 0.05) 70%);
+      top: 18%;
+      right: 18%;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 56px clamp(20px, 4vw, 72px) 80px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .pill-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(87, 181, 100, 0.18);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin: 0 0 10px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 6px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .primary-btn {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 16px 24px rgba(47, 143, 58, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: #2b8435;
+      box-shadow: 0 18px 30px rgba(47, 143, 58, 0.28);
+    }
+
+    .ghost-btn {
+      border: 1px solid rgba(46, 125, 50, 0.25);
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 22px rgba(47, 143, 58, 0.14);
+      border: 1px solid rgba(47, 143, 58, 0.12);
+    }
+
+    .stat-card p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    .complaints-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      border-radius: 22px;
+      border: 1px solid rgba(47, 143, 58, 0.12);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .complaint-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card-meta {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .badge-pending {
+      background: rgba(255, 193, 7, 0.18);
+      color: #b47d00;
+    }
+
+    .badge-progress {
+      background: rgba(13, 110, 253, 0.15);
+      color: #0b5ed7;
+    }
+
+    .badge-resolved {
+      background: rgba(25, 135, 84, 0.18);
+      color: #146c43;
+    }
+
+    .badge-overdue {
+      background: rgba(220, 53, 69, 0.18);
+      color: #b02a37;
+    }
+
+    .badge-due {
+      background: rgba(76, 175, 80, 0.2);
+      color: #1f6f31;
+    }
+
+    .progress {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .photo-box {
+      height: 140px;
+      border-radius: 16px;
+      background: rgba(47, 143, 58, 0.08);
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .submitted {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .feedback {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .feedback label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #3d4a42;
+    }
+
+    .feedback select,
+    .feedback textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(47, 143, 58, 0.18);
+      padding: 8px 10px;
+      background: #fff;
+      font-size: 0.85rem;
+    }
+
+    .ghost-btn.small {
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .clean-bubbles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--primary);
+      box-shadow: 0 12px 22px rgba(47, 143, 58, 0.16);
+      border: 1px solid rgba(87, 181, 100, 0.2);
+    }
+
+    .bubble-1 { top: 18%; left: 10px; }
+    .bubble-2 { top: 22%; right: 16px; }
+    .bubble-3 { bottom: 18%; left: 18px; }
+    .bubble-4 { bottom: 12%; right: 12px; }
+    .bubble-5 { top: 60%; right: 32px; }
+
+    @media (max-width: 780px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean City Portal - New Complaint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body class="eco-page">
+  <div class="ambient-orb orb-one"></div>
+  <div class="ambient-orb orb-two"></div>
+  <div class="ambient-orb orb-three"></div>
+
+  <main class="page-shell form-shell">
+    <section class="form-area">
+      <div class="clean-bubbles">
+        <span class="bubble bubble-1"><i class="fa-solid fa-seedling"></i></span>
+        <span class="bubble bubble-2"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+        <span class="bubble bubble-3"><i class="fa-solid fa-trash"></i></span>
+        <span class="bubble bubble-4"><i class="fa-solid fa-broom"></i></span>
+        <span class="bubble bubble-5"><i class="fa-solid fa-recycle"></i></span>
+      </div>
+
+      <header class="page-header">
+        <div>
+          <p class="pill-title"><i class="fa-solid fa-leaf"></i> City Sanitation Access</p>
+          <h1>New Complaint</h1>
+          <p class="subtitle">Fill all details for faster action and cleaner neighborhoods.</p>
+        </div>
+        <a class="ghost-btn" href="complaints.html"><i class="fa-solid fa-list"></i> View Complaints</a>
+      </header>
+
+      <div class="glass-card complaint-card">
+        <div class="card-title">
+          <span class="title-icon"><i class="fa-regular fa-pen-to-square"></i></span>
+          <div>
+            <h2>Complaint Details</h2>
+            <p>Tell us what needs attention, and we will take care of it.</p>
+          </div>
+        </div>
+
+        <form class="complaint-form">
+          <label class="field">
+            <span>Title</span>
+            <input type="text" placeholder="Overflowing bins" required>
+          </label>
+
+          <label class="field">
+            <span>Issue Type</span>
+            <select required>
+              <option>Garbage</option>
+              <option>Streetlight</option>
+              <option>Illegal dumping</option>
+              <option>Sewage</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Description</span>
+            <textarea rows="4" placeholder="Provide details" required></textarea>
+          </label>
+
+          <label class="field">
+            <span>Location</span>
+            <input type="text" placeholder="Sector 12, Block A" required>
+          </label>
+
+          <label class="field">
+            <span>Mobile Number</span>
+            <input type="tel" placeholder="10-digit mobile number" required>
+          </label>
+
+          <label class="field">
+            <span>Upload Image (required)</span>
+            <input class="file-input" type="file" required>
+          </label>
+
+          <button class="primary-btn" type="submit">Submit Complaint</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    :root {
+      --primary: #2f8f3a;
+      --secondary: #57b564;
+      --text: #2b3b33;
+      --muted: #6b7d73;
+      --glass: rgba(255, 255, 255, 0.92);
+      --shadow: 0 18px 40px rgba(31, 72, 40, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body.eco-page {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(87, 181, 100, 0.25), transparent 45%),
+        radial-gradient(circle at 90% 20%, rgba(129, 202, 141, 0.22), transparent 50%),
+        radial-gradient(circle at 85% 85%, rgba(87, 181, 100, 0.18), transparent 45%),
+        #eef9f2;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.28;
+      z-index: 0;
+      filter: blur(1px);
+    }
+
+    .orb-one {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(87, 181, 100, 0.3) 0%, rgba(87, 181, 100, 0.05) 70%);
+      top: -80px;
+      left: -90px;
+    }
+
+    .orb-two {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(47, 143, 58, 0.25) 0%, rgba(47, 143, 58, 0.05) 70%);
+      bottom: -70px;
+      right: 4%;
+    }
+
+    .orb-three {
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(129, 202, 141, 0.25) 0%, rgba(129, 202, 141, 0.05) 70%);
+      top: 18%;
+      right: 18%;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    .form-area {
+      width: min(720px, 100%);
+      position: relative;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .pill-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(87, 181, 100, 0.18);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin: 0 0 10px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 6px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(46, 125, 50, 0.25);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .ghost-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(46, 125, 50, 0.18);
+    }
+
+    .glass-card {
+      background: var(--glass);
+      border-radius: 22px;
+      border: 1px solid rgba(47, 143, 58, 0.12);
+      box-shadow: var(--shadow);
+      padding: 28px 30px 32px;
+      position: relative;
+    }
+
+    .card-title {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .card-title h2 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+    }
+
+    .card-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .title-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(47, 143, 58, 0.16);
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .complaint-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field span {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      color: #3d4a42;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(47, 143, 58, 0.22);
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      background: #fff;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(47, 143, 58, 0.7);
+      box-shadow: 0 0 0 4px rgba(87, 181, 100, 0.18);
+    }
+
+    .file-input {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .primary-btn {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 16px 24px rgba(47, 143, 58, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: #2b8435;
+      box-shadow: 0 18px 30px rgba(47, 143, 58, 0.28);
+    }
+
+    .clean-bubbles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--primary);
+      box-shadow: 0 12px 22px rgba(47, 143, 58, 0.16);
+      border: 1px solid rgba(87, 181, 100, 0.2);
+    }
+
+    .bubble-1 { top: -20px; left: -10px; }
+    .bubble-2 { top: 10%; right: -16px; }
+    .bubble-3 { bottom: 30%; left: -22px; }
+    .bubble-4 { bottom: -18px; right: 8%; }
+    .bubble-5 { top: 48%; right: -24px; }
+
+    @media (max-width: 720px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</body>
+</html>
