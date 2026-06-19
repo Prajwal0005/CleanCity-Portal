@@ -1,7 +1,0 @@
-mongDB
-
-connection string
-mongodb+srv://cleancityadmin:<CleanCity@123>@cleancity-cluster.wmrcluh.mongodb.net/?appName=cleancity-cluster
-
-
-mongodb+srv://cleancityadmin:<CleanCity@123>@cleancity-cluster.wmrcluh.mongodb.net/cleancity
